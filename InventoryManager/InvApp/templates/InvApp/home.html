@@ -10,6 +10,31 @@ Home Page
 <table>
     <thead>
         <tr>
+            <th>Brand ID</th>
+            <th>Name</th>
+            <th>Products</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for brand in brands %}
+        <tr>
+            <td> {{brand.id}} </td>
+            <td> {{brand.name}} </td>
+            <td> {{brand.products.count}} </td>
+            <td>
+                <a href=" {% url 'updateBrand' brand.id %} "> Update </a>
+                <a href=" {% url 'deleteBrand' brand.id %} "> Remove </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<!--  -->
+<br>
+<!--  -->
+<table>
+    <thead>
+        <tr>
             <th>Product ID</th>
             <th>Name</th>
             <th>SKU</th>

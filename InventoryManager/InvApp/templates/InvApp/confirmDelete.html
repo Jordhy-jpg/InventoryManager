@@ -6,18 +6,26 @@ Confirm Delete
 
 {% block content %}
 
-<h1>Are you sure you want to remove this product?</h1>
+<h1>Are you sure you want to remove</h1>
 <br>
+{% if product %}
+<h1>Product:</h1>
 <ul style="list-style: none;">
-    <li> {{product.name}} </li>
-    <li> {{product.sku}} </li>
-    <li> {{product.brand}} </li>
+    <li> Name: {{product.name}} </li>
+    <li> SKU: {{product.sku}} </li>
+    <li> Brand: {{product.brand}} </li>
 </ul>
+{% else %}
+<h1>Brand:</h1>
+<ul style="list-style: none;">
+    <li> Name: {{brand.name}} </li>
+</ul>
+{% endif %}
 <br>
 
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Remove Product</button>
+    <button type="submit">Remove</button>
 </form>
 
 {% endblock content %}

@@ -4,8 +4,9 @@ from .forms import BrandForm, ProductForm
 
 # Create your views here.
 def home(request):
+    brands = Brand.objects.all()
     products = Product.objects.all()
-    return render(request, 'InvApp/home.html', {'products':products})
+    return render(request, 'InvApp/home.html', {'products':products, 'brands':brands})
 
 def createBrand(request):
     form = BrandForm()
@@ -31,6 +32,19 @@ def createProduct(request):
     
     return render(request, 'InvApp/createProduct.html', {'form':form})
 
+def updateBrand(request, id):
+    brand = Brand.objects.get(id=id)
+    form = BrandForm(instance=brand)
+
+    if request.method == 'POST':
+        form = BrandForm(request.POST, instance=brand)
+
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        
+    return render(request, 'InvApp/createBrand.html', {'form':form})
+
 def updateProduct(request, id):
     product = Product.objects.get(id=id)
     form = ProductForm(instance=product)
@@ -43,6 +57,15 @@ def updateProduct(request, id):
             return redirect('home')
         
     return render(request, 'InvApp/createProduct.html', {'form':form})
+
+def deleteBrand(request, id):
+    brand = Brand.objects.get(id=id)
+
+    if request.method == 'POST':
+        brand.delete()
+        return redirect('home')
+    
+    return render(request, 'InvApp/confirmDelete.html', {'brand':brand})
 
 def deleteProduct(request, id):
     product = Product.objects.get(id=id)
