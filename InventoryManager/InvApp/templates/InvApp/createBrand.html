@@ -1,0 +1,15 @@
+{% extends "InvApp/base.html" %}
+
+{% block title %}
+Create Brand
+{% endblock title %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">Add Brand</button>
+</form>
+
+{% endblock content %}

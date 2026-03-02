@@ -4,7 +4,42 @@
 Home Page
 {% endblock title %}
 
-
 {% block content %}
 <h1>This is the home page</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Name</th>
+            <th>SKU</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Brand</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td> {{product.id}} </td>
+            <td> {{product.name}} </td>
+            <td> {{product.sku}} </td>
+            <td> {{product.price}} </td>
+            <td> {{product.qty}} </td>
+            <td> {{product.brand}} </td>
+            <td>
+                <a> Update </a>
+                <a> Delete </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<ul style="display: flex; gap: 10px; list-style: none; margin: auto;">
+    <li><a href="{% url 'createProduct' %}">Create Product</a></li>
+    <li><a href="{% url 'createBrand' %}">Create Brand</a></li>
+</ul>
+
 {% endblock content %}
