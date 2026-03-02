@@ -29,8 +29,8 @@ Home Page
             <td> {{product.qty}} </td>
             <td> {{product.brand}} </td>
             <td>
-                <a> Update </a>
-                <a> Delete </a>
+                <a href=" {% url 'updateProduct' product.id %} "> Update </a>
+                <a href=" {% url 'deleteProduct' product.id %} "> Remove </a>
             </td>
         </tr>
         {% endfor %}
@@ -38,8 +38,8 @@ Home Page
 </table>
 
 <ul style="display: flex; gap: 10px; list-style: none; margin: auto;">
-    <li><a href="{% url 'createProduct' %}">Create Product</a></li>
-    <li><a href="{% url 'createBrand' %}">Create Brand</a></li>
+    <li><a href="{% url 'createProduct' %}">Add Product</a></li>
+    <li><a href="{% url 'createBrand' %}">Add Brand</a></li>
 </ul>
 
 {% endblock content %}

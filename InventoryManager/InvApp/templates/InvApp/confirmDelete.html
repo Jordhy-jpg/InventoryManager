@@ -1,0 +1,23 @@
+{% extends "./base.html" %}
+
+{% block title %}
+Confirm Delete
+{% endblock title %}
+
+{% block content %}
+
+<h1>Are you sure you want to remove this product?</h1>
+<br>
+<ul style="list-style: none;">
+    <li> {{product.name}} </li>
+    <li> {{product.sku}} </li>
+    <li> {{product.brand}} </li>
+</ul>
+<br>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Remove Product</button>
+</form>
+
+{% endblock content %}

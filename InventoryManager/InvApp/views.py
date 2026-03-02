@@ -30,3 +30,25 @@ def createProduct(request):
             return redirect('home')
     
     return render(request, 'InvApp/createProduct.html', {'form':form})
+
+def updateProduct(request, id):
+    product = Product.objects.get(id=id)
+    form = ProductForm(instance=product)
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=product)
+
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        
+    return render(request, 'InvApp/createProduct.html', {'form':form})
+
+def deleteProduct(request, id):
+    product = Product.objects.get(id=id)
+
+    if request.method == 'POST':
+        product.delete()
+        return redirect('home')
+    
+    return render(request, 'InvApp/confirmDelete.html', {'product':product})
