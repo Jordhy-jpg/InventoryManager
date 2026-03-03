@@ -30,7 +30,7 @@ SECRET_KEY = os.environ['SECRETKEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'inventory-manager-delta-gilt.vercel.app']
 
 
 # Application definition
