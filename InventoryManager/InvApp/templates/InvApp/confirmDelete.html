@@ -1,31 +1,33 @@
-{% extends "./base.html" %}
+{% extends "InvApp/base.html" %}
 
 {% block title %}
 Confirm Delete
 {% endblock title %}
 
 {% block content %}
+<div class="auth-container" style="margin: auto; text-align: center;">
+    <h1>Are you sure you want to remove</h1>
+    
+    {% if product %}
+    <h2 style="margin-bottom: 1rem; color: var(--danger);">Product</h2>
+    <ul class="details-list">
+        <li><strong>Name:</strong> {{product.name}} </li>
+        <li><strong>SKU:</strong> {{product.sku}} </li>
+        <li><strong>Brand:</strong> {{product.brand}} </li>
+    </ul>
+    {% else %}
+    <h2 style="margin-bottom: 1rem; color: var(--danger);">Brand</h2>
+    <ul class="details-list">
+        <li><strong>Name:</strong> {{brand.name}} </li>
+    </ul>
+    {% endif %}
 
-<h1>Are you sure you want to remove</h1>
-<br>
-{% if product %}
-<h1>Product:</h1>
-<ul style="list-style: none;">
-    <li> Name: {{product.name}} </li>
-    <li> SKU: {{product.sku}} </li>
-    <li> Brand: {{product.brand}} </li>
-</ul>
-{% else %}
-<h1>Brand:</h1>
-<ul style="list-style: none;">
-    <li> Name: {{brand.name}} </li>
-</ul>
-{% endif %}
-<br>
-
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Remove</button>
-</form>
-
+    <form method="post" style="margin-top: 2rem;">
+        {% csrf_token %}
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+            <a href="{% url 'home' %}" class="btn" style="background: var(--glass-bg); border: 1px solid var(--glass-border);">Cancel</a>
+            <button type="submit" class="danger">Remove</button>
+        </div>
+    </form>
+</div>
 {% endblock content %}

@@ -5,11 +5,15 @@ Create Product
 {% endblock title %}
 
 {% block content %}
-
-<form method="post">
-    {% csrf_token %}
-    {{form}}
-    <button type="submit">Add Product</button>
-</form>
-
+<div class="auth-container" style="margin: auto;">
+    <h1>Create Product</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit">Add Product</button>
+    </form>
+    <div style="margin-top: 2rem; text-align: center;">
+        <a href="{% url 'home' %}" class="btn" style="background: var(--glass-bg); border: 1px solid var(--glass-border);">Back to Home</a>
+    </div>
+</div>
 {% endblock content %}

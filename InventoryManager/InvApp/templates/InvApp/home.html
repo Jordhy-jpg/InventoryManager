@@ -5,64 +5,78 @@ Home Page
 {% endblock title %}
 
 {% block content %}
-<h1>This is the home page</h1>
+<h1>Inventory Manager</h1>
 
-<table>
-    <thead>
-        <tr>
-            <th>Brand ID</th>
-            <th>Name</th>
-            <th>Products</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for brand in brands %}
-        <tr>
-            <td> {{brand.id}} </td>
-            <td> {{brand.name}} </td>
-            <td> {{brand.products.count}} </td>
-            <td>
-                <a href=" {% url 'updateBrand' brand.id %} "> Update </a>
-                <a href=" {% url 'deleteBrand' brand.id %} "> Remove </a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<!--  -->
-<br>
-<!--  -->
-<table>
-    <thead>
-        <tr>
-            <th>Product ID</th>
-            <th>Name</th>
-            <th>SKU</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Brand</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for product in products %}
-        <tr>
-            <td> {{product.id}} </td>
-            <td> {{product.name}} </td>
-            <td> {{product.sku}} </td>
-            <td> {{product.price}} </td>
-            <td> {{product.qty}} </td>
-            <td> {{product.brand}} </td>
-            <td>
-                <a href=" {% url 'updateProduct' product.id %} "> Update </a>
-                <a href=" {% url 'deleteProduct' product.id %} "> Remove </a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<style>
+    table {
+        text-align: center;
+    }
+    a {
+        margin-top: 5px;
+        margin-bottom:5px;
+    }
+</style>
 
-<ul style="display: flex; gap: 10px; list-style: none; margin: auto;">
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>Brand ID</th>
+                <th>Name</th>
+                <th>Products</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for brand in brands %}
+            <tr>
+                <td> {{brand.id}} </td>
+                <td> {{brand.name}} </td>
+                <td> {{brand.products.count}} </td>
+                <td>
+                    <a href=" {% url 'updateBrand' brand.id %} "> Update </a>
+                    <a href=" {% url 'deleteBrand' brand.id %} "> Remove </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="divider-text">Products</div>
+
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>SKU</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Brand</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td> {{product.id}} </td>
+                <td> {{product.name}} </td>
+                <td> {{product.sku}} </td>
+                <td> {{product.price}} </td>
+                <td> {{product.qty}} </td>
+                <td> {{product.brand}} </td>
+                <td>
+                    <a href=" {% url 'updateProduct' product.id %} "> Update </a>
+                    <a href=" {% url 'deleteProduct' product.id %} "> Remove </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<ul class="nav-links">
     <li><a href="{% url 'createProduct' %}">Add Product</a></li>
     <li><a href="{% url 'createBrand' %}">Add Brand</a></li>
 </ul>
