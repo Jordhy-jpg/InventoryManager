@@ -9,11 +9,24 @@ Create Brand
     <h1>Create Brand</h1>
     <form method="post">
         {% csrf_token %}
-        {{form}}
-        <button type="submit">Add Brand</button>
+
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.help_text %}
+                    <p class="helptext">{{ field.help_text }}</p>
+                {% endif %}
+                {% if field.errors %}
+                    {{ field.errors }}
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <div class="btn-group">
+            <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+            <button type="submit">Add Brand</button>
+        </div>
     </form>
-    <div style="margin-top: 2rem; text-align: center;">
-        <a href="{% url 'home' %}" class="btn" style="background: var(--glass-bg); border: 1px solid var(--glass-border);">Back to Home</a>
-    </div>
 </div>
 {% endblock content %}
