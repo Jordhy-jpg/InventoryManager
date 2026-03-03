@@ -1,0 +1,16 @@
+{
+    "version": 1,
+    "buildCommand": "./build.sh",
+    "builds": [
+        {
+            "src": "Main/wsgi.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "Main/wsgi.py"
+        }
+    ]
+}
